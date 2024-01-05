@@ -1,3 +1,4 @@
+# Import library dan package
 import itertools
 import pandas as pd
 import numpy as np
@@ -7,6 +8,7 @@ import streamlit as st
 import time
 import pickle
 
+# Read ada hungarian.data
 with open("hungarian.data", encoding="Latin1") as file:
     lines = [line.strip() for line in file]
 
@@ -86,8 +88,10 @@ y = df_clean["target"]
 smote = SMOTE(random_state=42)
 X, y = smote.fit_resample(X, y)
 
+# Memuat model xgboost
 model = pickle.load(open("xgb_model.pkl", "rb"))
 
+# Menghitung nilai akurasi model
 y_pred = model.predict(X)
 accuracy = accuracy_score(y, y_pred)
 accuracy = round((accuracy * 100), 2)
@@ -100,13 +104,31 @@ df_final["target"] = y
 # STREAMLIT
 st.set_page_config(page_title="Hungarian Heart Disease", page_icon=":heart:")
 
+# CSS
+page_bg_img = """
+<style>
+.css-1cypcdb {
+background-color: rgb(41, 41, 41);
+}
+.css-shk669 {
+background-color: rgb(44, 179, 59);
+border: 1px solid rgb(44, 179, 59);
+}
+<style>
+"""
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
+# Tampilan Utama
 st.title("Prediksi Klasifikasi Heart Disease")
 st.write(f"**_Akurasi Model_** :  :green[**{accuracy}**]%")
 st.write("")
 
+# Membuat 2 tab
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
 
 with tab1:
+    # Membuat sidebar
     st.sidebar.header("**User Input** Sidebar")
 
     age = st.sidebar.number_input(
