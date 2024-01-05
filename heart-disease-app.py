@@ -114,6 +114,12 @@ background-color: rgb(41, 41, 41);
 background-color: rgb(44, 179, 59);
 border: 1px solid rgb(44, 179, 59);
 }
+.st-c7 {
+background: rgb(43, 43, 43);
+}
+.css-ffhzg2 {
+background: rgb(43, 43, 43)
+}
 <style>
 """
 
