@@ -130,7 +130,7 @@ with tab1:
     # -- Value 1: Male
 
     cp_sb = st.sidebar.selectbox(
-        label=":blue[**Chest pain type**]",
+        label=":blue[**Jenis nyeri dada**]",
         options=[
             "Typical angina",
             "Atypical angina",
@@ -154,7 +154,7 @@ with tab1:
     # -- Value 4: asymptomatic
 
     trestbps = st.sidebar.number_input(
-        label=":blue[**Resting blood pressure** (in mm Hg on admission to the hospital)]",
+        label=":blue[**Tekanan darah saat istirahat** (dalam mm Hg saat masuk ke rumah sakit)]",
         min_value=df_final["trestbps"].min(),
         max_value=df_final["trestbps"].max(),
     )
@@ -164,7 +164,7 @@ with tab1:
     st.sidebar.write("")
 
     chol = st.sidebar.number_input(
-        label=":blue[**Serum cholestoral** (in mg/dl)]",
+        label=":blue[**Serum kolestoral** (dalam mg/dl)]",
         min_value=df_final["chol"].min(),
         max_value=df_final["chol"].max(),
     )
@@ -186,27 +186,27 @@ with tab1:
     # -- Value 1: true
 
     restecg_sb = st.sidebar.selectbox(
-        label=":blue[**Resting electrocardiographic results**]",
+        label=":blue[**Hasil elektrokardiografi saat istirahat**]",
         options=[
             "Normal",
-            "Having ST-T wave abnormality",
-            "Showing left ventricular hypertrophy",
+            "Memiliki abnormalitas gelombang ST-T",
+            "Menunjukkan hipertrofi ventrikel kiri",
         ],
     )
     st.sidebar.write("")
     st.sidebar.write("")
     if restecg_sb == "Normal":
         restecg = 0
-    elif restecg_sb == "Having ST-T wave abnormality":
+    elif restecg_sb == "Memiliki abnormalitas gelombang ST-T":
         restecg = 1
-    elif restecg_sb == "Showing left ventricular hypertrophy":
+    elif restecg_sb == "Menunjukkan hipertrofi ventrikel kiri":
         restecg = 2
     # -- Value 0: normal
     # -- Value 1: having ST-T wave abnormality (T wave inversions and/or ST  elevation or depression of > 0.05 mV)
     # -- Value 2: showing probable or definite left ventricular hypertrophy by Estes' criteria
 
     thalach = st.sidebar.number_input(
-        label=":blue[**Maximum heart rate achieved**]",
+        label=":blue[**Detak jantung maksimum yang dicapai**]",
         min_value=df_final["thalach"].min(),
         max_value=df_final["thalach"].max(),
     )
@@ -216,7 +216,7 @@ with tab1:
     st.sidebar.write("")
 
     exang_sb = st.sidebar.selectbox(
-        label=":blue[**Exercise induced angina?**]", options=["No", "Yes"]
+        label=":blue[**Olahraga yang menyebabkan angina?**]", options=["No", "Yes"]
     )
     st.sidebar.write("")
     st.sidebar.write("")
@@ -228,7 +228,7 @@ with tab1:
     # -- Value 1: Yes
 
     oldpeak = st.sidebar.number_input(
-        label=":blue[**ST depression induced by exercise relative to rest**]",
+        label=":blue[**Depresi ST yang disebabkan oleh olahraga relatif terhadap istirahat**]",
         min_value=df_final["oldpeak"].min(),
         max_value=df_final["oldpeak"].max(),
     )
@@ -281,7 +281,7 @@ with tab1:
                 bar.empty()
 
         if prediction == 0:
-            result = ":green[**Healthy**]"
+            result = ":green[**Sehat**]"
         elif prediction == 1:
             result = ":orange[**Heart disease level 1**]"
         elif prediction == 2:
@@ -297,13 +297,13 @@ with tab1:
     st.subheader(result)
 
 with tab2:
-    st.header("Predict multiple data:")
+    st.header("Prediksi multiple data:")
 
     sample_csv = df_final.iloc[:5, :-1].to_csv(index=False).encode("utf-8")
 
     st.write("")
     st.download_button(
-        "Download CSV Example",
+        "Download Contoh CSV",
         data=sample_csv,
         file_name="sample_heart_disease_parameters.csv",
         mime="text/csv",
@@ -311,7 +311,7 @@ with tab2:
 
     st.write("")
     st.write("")
-    file_uploaded = st.file_uploader("Upload a CSV file", type="csv")
+    file_uploaded = st.file_uploader("Upload CSV file", type="csv")
 
     if file_uploaded:
         uploaded_df = pd.read_csv(file_uploaded)
@@ -329,7 +329,7 @@ with tab2:
 
         for prediction in prediction_arr:
             if prediction == 0:
-                result = "Healthy"
+                result = "Sehat"
             elif prediction == 1:
                 result = "Heart disease level 1"
             elif prediction == 2:
@@ -340,7 +340,7 @@ with tab2:
                 result = "Heart disease level 4"
             result_arr.append(result)
 
-        uploaded_result = pd.DataFrame({"Prediction Result": result_arr})
+        uploaded_result = pd.DataFrame({"Hasil prediksi": result_arr})
 
         for i in range(70, 101):
             status_text.text(f"{i}% complete")
