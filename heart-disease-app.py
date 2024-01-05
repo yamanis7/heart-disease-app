@@ -100,10 +100,8 @@ df_final["target"] = y
 # STREAMLIT
 st.set_page_config(page_title="Hungarian Heart Disease", page_icon=":heart:")
 
-st.title("Hungarian Heart Disease")
-st.write(
-    f"**_Model's Accuracy_** :  :green[**{accuracy}**]% (:red[_Do not copy outright_])"
-)
+st.title("Prediksi Klasifikasi Heart Disease")
+st.write(f"**_Akurasi Model_** :  :green[**{accuracy}**]%")
 st.write("")
 
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
@@ -112,7 +110,7 @@ with tab1:
     st.sidebar.header("**User Input** Sidebar")
 
     age = st.sidebar.number_input(
-        label=":violet[**Age**]",
+        label=":blue[**Age**]",
         min_value=df_final["age"].min(),
         max_value=df_final["age"].max(),
     )
@@ -121,7 +119,7 @@ with tab1:
     )
     st.sidebar.write("")
 
-    sex_sb = st.sidebar.selectbox(label=":violet[**Sex**]", options=["Male", "Female"])
+    sex_sb = st.sidebar.selectbox(label=":blue[**Sex**]", options=["Male", "Female"])
     st.sidebar.write("")
     st.sidebar.write("")
     if sex_sb == "Male":
@@ -132,7 +130,7 @@ with tab1:
     # -- Value 1: Male
 
     cp_sb = st.sidebar.selectbox(
-        label=":violet[**Chest pain type**]",
+        label=":blue[**Chest pain type**]",
         options=[
             "Typical angina",
             "Atypical angina",
@@ -156,7 +154,7 @@ with tab1:
     # -- Value 4: asymptomatic
 
     trestbps = st.sidebar.number_input(
-        label=":violet[**Resting blood pressure** (in mm Hg on admission to the hospital)]",
+        label=":blue[**Resting blood pressure** (in mm Hg on admission to the hospital)]",
         min_value=df_final["trestbps"].min(),
         max_value=df_final["trestbps"].max(),
     )
@@ -166,7 +164,7 @@ with tab1:
     st.sidebar.write("")
 
     chol = st.sidebar.number_input(
-        label=":violet[**Serum cholestoral** (in mg/dl)]",
+        label=":blue[**Serum cholestoral** (in mg/dl)]",
         min_value=df_final["chol"].min(),
         max_value=df_final["chol"].max(),
     )
@@ -176,7 +174,7 @@ with tab1:
     st.sidebar.write("")
 
     fbs_sb = st.sidebar.selectbox(
-        label=":violet[**Fasting blood sugar > 120 mg/dl?**]", options=["False", "True"]
+        label=":blue[**Fasting blood sugar > 120 mg/dl?**]", options=["False", "True"]
     )
     st.sidebar.write("")
     st.sidebar.write("")
@@ -188,7 +186,7 @@ with tab1:
     # -- Value 1: true
 
     restecg_sb = st.sidebar.selectbox(
-        label=":violet[**Resting electrocardiographic results**]",
+        label=":blue[**Resting electrocardiographic results**]",
         options=[
             "Normal",
             "Having ST-T wave abnormality",
@@ -208,7 +206,7 @@ with tab1:
     # -- Value 2: showing probable or definite left ventricular hypertrophy by Estes' criteria
 
     thalach = st.sidebar.number_input(
-        label=":violet[**Maximum heart rate achieved**]",
+        label=":blue[**Maximum heart rate achieved**]",
         min_value=df_final["thalach"].min(),
         max_value=df_final["thalach"].max(),
     )
@@ -218,7 +216,7 @@ with tab1:
     st.sidebar.write("")
 
     exang_sb = st.sidebar.selectbox(
-        label=":violet[**Exercise induced angina?**]", options=["No", "Yes"]
+        label=":blue[**Exercise induced angina?**]", options=["No", "Yes"]
     )
     st.sidebar.write("")
     st.sidebar.write("")
@@ -230,7 +228,7 @@ with tab1:
     # -- Value 1: Yes
 
     oldpeak = st.sidebar.number_input(
-        label=":violet[**ST depression induced by exercise relative to rest**]",
+        label=":blue[**ST depression induced by exercise relative to rest**]",
         min_value=df_final["oldpeak"].min(),
         max_value=df_final["oldpeak"].max(),
     )
@@ -254,16 +252,16 @@ with tab1:
 
     preview_df = pd.DataFrame(data, index=["input"])
 
-    st.header("User Input as DataFrame")
+    st.header("User Input")
     st.write("")
     st.dataframe(preview_df.iloc[:, :6])
     st.write("")
     st.dataframe(preview_df.iloc[:, 6:])
     st.write("")
 
-    result = ":violet[-]"
+    result = ":blue[-]"
 
-    predict_btn = st.button("**Predict**", type="primary")
+    predict_btn = st.button("**Prediksi**", type="primary")
 
     st.write("")
     if predict_btn:
@@ -295,7 +293,7 @@ with tab1:
 
     st.write("")
     st.write("")
-    st.subheader("Prediction:")
+    st.subheader("Prediksi:")
     st.subheader(result)
 
 with tab2:
