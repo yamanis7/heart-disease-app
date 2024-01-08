@@ -107,19 +107,25 @@ st.set_page_config(page_title="Hungarian Heart Disease", page_icon=":heart:")
 # CSS
 page_bg_img = """
 <style>
+
+/* Warna Background Sidebar*/
 .css-1cypcdb {
-background-color: rgb(41, 41, 41);
+background-color: rgb(38, 35, 131);
 }
+
 .css-shk669 {
 background-color: rgb(44, 179, 59);
 border: 1px solid rgb(44, 179, 59);
 }
+
 .st-c7 {
-background: rgb(43, 43, 43);
+background: rgb(24, 22, 98);
 }
+
 .css-ffhzg2 {
-background: rgb(43, 43, 43)
+background: rgb(24, 22, 98)
 }
+
 <style>
 """
 
